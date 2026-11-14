@@ -11,8 +11,6 @@ jobs:
     steps:
       - name: Baixar código do repositório
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0 # Pega o histórico completo para evitar conflitos de branch
 
       - name: Configurar Python
         uses: actions/setup-python@v5
@@ -23,14 +21,19 @@ jobs:
         working-directory: ./BP   # Direciona o script para dentro da pasta BP
         run: python gerar_mod.py
 
-      - name: Sincronizar alterações com o repositório (Evitar divergência)
+      - name: Commitar e enviar arquivos com segurança nativa do Git
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git pull origin main --rebase || echo "Continuando..."
-
-      - name: Commitar e enviar os arquivos gerados
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "🛠️ Auto-gerar itens e receitas completas do mod dentro do Behavior Pack (BP)"
-          branch: main
+          
+          # Adiciona apenas os arquivos dentro da pasta BP
+          git add BP/
+          
+          # Realiza o commit (se não houver mudanças, apenas avisa e continua)
+          git commit -m "🛠️ Auto-gerar itens e receitas completas do mod dentro do BP" || echo "Sem alterações para commitar"
+          
+          # Puxa as atualizações do remoto aplicando rebase para evitar conflito
+          git pull origin main --rebase
+          
+          # Envia para o GitHub com sucesso
+          git push origin main
