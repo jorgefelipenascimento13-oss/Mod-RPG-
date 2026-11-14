@@ -1,0 +1,33 @@
+name: Gerar Texturas do Mod (RP)
+
+on:
+  workflow_dispatch: # Permite disparar manualmente pelo navegador na aba Actions
+
+jobs:
+  gerar-texturas:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Permite salvar as imagens e o item_texture.json no repositório
+    steps:
+      - name: Baixar código do repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Instalar biblioteca Pillow
+        run: pip install Pillow
+
+      - name: Executar gerador de texturas
+        # Se o seu Resource Pack ficar dentro de uma subpasta (ex: RP/),
+        # descomente a linha abaixo e ajuste o caminho:
+        # working-directory: ./RP
+        run: python gerar_texturas.py
+
+      - name: Commitar e enviar texturas geradas
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "🎨 Auto-gerar 167 texturas e item_texture.json via GitHub Actions"
+          branch: main # Altere para 'master' se a branch principal do seu repo for master
