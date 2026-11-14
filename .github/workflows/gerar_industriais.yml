@@ -1,0 +1,33 @@
+name: Gerar Blocos Industriais e Infestação
+
+on:
+  workflow_dispatch: # Permite rodar manualmente na aba Actions do GitHub
+
+jobs:
+  gerar-industriais:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Permite que o GitHub salve os arquivos gerados de volta no repositório
+    steps:
+      - name: Baixar código do repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Instalar Pillow
+        run: pip install Pillow
+
+      - name: Executar script Python dentro do Behavior Pack
+        # Se a pasta do seu Behavior Pack tiver outro nome, altere './BP' para o nome correto
+        working-directory: ./BP
+        run: python gerar_industriais_e_infestacao.py
+
+      - name: Commitar e enviar os arquivos gerados
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "🏭 Auto-gerar blocos industriais, flecha e poção de infestação via GitHub Actions"
+          branch: main # Altere para 'master' se a branch principal do seu repositório for master
+          
