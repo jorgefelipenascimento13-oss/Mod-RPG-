@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Baixar código do repositório
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Pega o histórico completo para evitar conflitos de branch
 
       - name: Configurar Python
         uses: actions/setup-python@v5
@@ -18,11 +20,17 @@ jobs:
           python-version: '3.10'
 
       - name: Executar gerador unificado do mod dentro do Behavior Pack
-        working-directory: ./BP   # <--- DIRECIONA O SCRIPT PARA DENTRO DA PASTA BP
+        working-directory: ./BP   # Direciona o script para dentro da pasta BP
         run: python gerar_mod.py
+
+      - name: Sincronizar alterações com o repositório (Evitar divergência)
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git pull origin main --rebase || echo "Continuando..."
 
       - name: Commitar e enviar os arquivos gerados
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "🛠️ Auto-gerar itens e receitas completas do mod dentro do Behavior Pack (BP)"
-          branch: main # Altere para 'master' se a branch principal do seu repositório for master
+          branch: main
