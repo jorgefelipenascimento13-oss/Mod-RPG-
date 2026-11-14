@@ -1,0 +1,40 @@
+name: Gerar Receitas e Langs de Runas
+
+on:
+  workflow_dispatch: # Permite rodar manualmente na aba Actions do GitHub
+
+jobs:
+  gerar-receitas-runas:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Permite salvar os arquivos gerados direto no repositório
+    steps:
+      - name: Baixar código do repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Executar script de receitas de runas dentro do Behavior Pack
+        working-directory: ./BP   # Direciona a execução para dentro da pasta BP
+        run: python gerar_receitas_runas.py
+
+      - name: Commitar e enviar arquivos com segurança nativa do Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          
+          # Adiciona as alterações tanto no BP quanto no RP
+          git add BP/ recipes/ ../RP/ 2>/dev/null || true
+          git add .
+          
+          # Realiza o commit (se não houver mudanças, apenas avisa e continua)
+          git commit -m "📜 Auto-gerar 105 receitas de runas e traduções via GitHub Actions" || echo "Sem alterações para commitar"
+          
+          # Puxa as atualizações do remoto aplicando rebase para evitar conflito
+          git pull origin main --rebase
+          
+          # Envia para o GitHub com sucesso
+          git push origin main
