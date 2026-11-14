@@ -23,7 +23,7 @@ jobs:
       - name: Executar gerador de texturas
         # Se o seu Resource Pack ficar dentro de uma subpasta (ex: RP/),
         # descomente a linha abaixo e ajuste o caminho:
-        # working-directory: ./RP
+        working-directory: ./RP
         run: python gerar_texturas.py
 
       - name: Commitar e enviar texturas geradas
