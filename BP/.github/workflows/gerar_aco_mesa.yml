@@ -1,0 +1,32 @@
+name: Gerar Aço e Mesa de Runas
+
+on:
+  workflow_dispatch: # Permite rodar manualmente na aba Actions do GitHub
+
+jobs:
+  gerar-aco-mesa:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Permite salvar os arquivos gerados direto no repositório
+    steps:
+      - name: Baixar código do repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Instalar Pillow
+        run: pip install Pillow
+
+      - name: Executar script Python dentro do Behavior Pack
+        # Altere './BP' se a pasta do seu Behavior Pack tiver outro nome
+        working-directory: ./BP
+        run: python gerar_aco_e_mesa.py
+
+      - name: Commitar e enviar os arquivos gerados
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "✨ Auto-gerar Barra de Aço e Mesa de Runas via GitHub Actions"
+          branch: main # Altere para 'master' se a branch principal do seu repositório for master
