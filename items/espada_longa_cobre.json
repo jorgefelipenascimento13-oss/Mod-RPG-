@@ -1,0 +1,45 @@
+{
+  "format_version": "1.21.30",
+  "minecraft:item": {
+    "description": {
+      "identifier": "mod_rpg_rune:espada_longa_cobre",
+      "menu_category": {
+        "category": "equipment",
+        "group": "itemGroup.name.sword"
+      }
+    },
+    "components": {
+      "minecraft:max_stack_size": 1,
+      "minecraft:hand_equipped": true,
+      "minecraft:damage": 10,
+      "minecraft:durability": {
+        "max_durability": 500
+      },
+      "minecraft:enchantable": {
+        "value": 15,
+        "slot": "sword"
+      },
+      "minecraft:weapon": {
+        "on_hit_block": {
+          "affect_item_durability": true
+        },
+        "on_hit_entity": {
+          "affect_item_durability": true
+        }
+      },
+      "minecraft:icon": {
+        "texture": "espada_longa_cobre"
+      },
+      "minecraft:display_name": {
+        "value": "Espada Longa de Cobre"
+      },
+      "minecraft:tags": {
+        "tags": [
+          "mod_rpg_rune:rune_compatible",
+          "weapon.espada_longa",
+          "material.cobre"
+        ]
+      }
+    }
+  }
+}

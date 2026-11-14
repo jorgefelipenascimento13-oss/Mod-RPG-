@@ -1,0 +1,45 @@
+{
+  "format_version": "1.21.30",
+  "minecraft:item": {
+    "description": {
+      "identifier": "mod_rpg_rune:hari_madeira",
+      "menu_category": {
+        "category": "equipment",
+        "group": "itemGroup.name.sword"
+      }
+    },
+    "components": {
+      "minecraft:max_stack_size": 1,
+      "minecraft:hand_equipped": true,
+      "minecraft:damage": 1,
+      "minecraft:durability": {
+        "max_durability": 20
+      },
+      "minecraft:enchantable": {
+        "value": 20,
+        "slot": "sword"
+      },
+      "minecraft:weapon": {
+        "on_hit_block": {
+          "affect_item_durability": true
+        },
+        "on_hit_entity": {
+          "affect_item_durability": true
+        }
+      },
+      "minecraft:icon": {
+        "texture": "hari_madeira"
+      },
+      "minecraft:display_name": {
+        "value": "Hari de Madeira"
+      },
+      "minecraft:tags": {
+        "tags": [
+          "mod_rpg_rune:rune_compatible",
+          "weapon.hari",
+          "material.madeira"
+        ]
+      }
+    }
+  }
+}
