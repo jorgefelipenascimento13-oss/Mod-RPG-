@@ -1,0 +1,28 @@
+name: Gerar Armas do Mod
+
+on:
+  workflow_dispatch: # Permite rodar manualmente pelo site do GitHub
+
+jobs:
+  gerar-json-armas:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Permite salvar os arquivos gerados direto no repositório
+    steps:
+      - name: Baixar código do repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Executar script Python de armas
+        run: python gerar_armas.py
+
+      - name: Commitar e enviar os arquivos gerados
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "⚔️ Auto-gerar arquivos JSON de armas via GitHub Actions"
+          branch: main
+          
