@@ -1,0 +1,40 @@
+{
+  "format_version": "1.21.30",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "mod_rpg_rune:industrial_planter"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "IHI",
+      "DPS",
+      "ICI"
+    ],
+    "key": {
+      "I": {
+        "item": "minecraft:iron_ingot"
+      },
+      "H": {
+        "item": "minecraft:iron_hoe"
+      },
+      "D": {
+        "item": "minecraft:dirt"
+      },
+      "P": {
+        "item": "minecraft:piston"
+      },
+      "S": {
+        "item": "minecraft:oak_sapling"
+      },
+      "C": {
+        "item": "minecraft:chest"
+      }
+    },
+    "result": {
+      "item": "mod_rpg_rune:industrial_planter",
+      "count": 1
+    }
+  }
+}

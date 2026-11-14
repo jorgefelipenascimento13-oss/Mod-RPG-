@@ -1,0 +1,23 @@
+{
+  "format_version": "1.21.30",
+  "minecraft:item": {
+    "description": {
+      "identifier": "mod_rpg_rune:industrial_fertilizer",
+      "menu_category": {
+        "category": "construction"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "texture": "industrial_fertilizer"
+      },
+      "minecraft:display_name": {
+        "value": "Fertilizador Industrial"
+      },
+      "minecraft:max_stack_size": 64,
+      "minecraft:block_placer": {
+        "block": "mod_rpg_rune:industrial_fertilizer"
+      }
+    }
+  }
+}

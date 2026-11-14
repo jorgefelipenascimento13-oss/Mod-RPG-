@@ -1,0 +1,17 @@
+{
+  "resource_pack_name": "mod_rpg_rune",
+  "texture_name": "atlas.terrain",
+  "padding": 8,
+  "num_mip_levels": 4,
+  "texture_data": {
+    "industrial_planter": {
+      "textures": "textures/blocks/industrial_planter"
+    },
+    "industrial_fertilizer": {
+      "textures": "textures/blocks/industrial_fertilizer"
+    },
+    "industrial_harvester": {
+      "textures": "textures/blocks/industrial_harvester"
+    }
+  }
+}

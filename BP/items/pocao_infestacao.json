@@ -1,0 +1,26 @@
+{
+  "format_version": "1.21.30",
+  "minecraft:item": {
+    "description": {
+      "identifier": "mod_rpg_rune:pocao_infestacao",
+      "menu_category": {
+        "category": "equipment"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "texture": "pocao_infestacao"
+      },
+      "minecraft:display_name": {
+        "value": "Poção de Infestação"
+      },
+      "minecraft:max_stack_size": 16,
+      "minecraft:throwable": {
+        "do_swing_animation": true
+      },
+      "minecraft:projectile": {
+        "projectile_entity": "mod_rpg_rune:infestation_projectile"
+      }
+    }
+  }
+}

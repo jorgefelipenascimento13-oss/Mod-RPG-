@@ -1,0 +1,37 @@
+{
+  "format_version": "1.21.30",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "mod_rpg_rune:industrial_harvester"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "IAI",
+      "SPS",
+      "ICI"
+    ],
+    "key": {
+      "I": {
+        "item": "minecraft:iron_ingot"
+      },
+      "A": {
+        "item": "minecraft:iron_axe"
+      },
+      "S": {
+        "item": "minecraft:shears"
+      },
+      "P": {
+        "item": "minecraft:piston"
+      },
+      "C": {
+        "item": "minecraft:chest"
+      }
+    },
+    "result": {
+      "item": "mod_rpg_rune:industrial_harvester",
+      "count": 1
+    }
+  }
+}

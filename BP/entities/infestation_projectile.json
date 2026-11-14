@@ -1,0 +1,40 @@
+{
+  "format_version": "1.21.30",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "mod_rpg_rune:infestation_projectile",
+      "is_spawnable": false,
+      "is_summonable": true
+    },
+    "components": {
+      "minecraft:collision_box": {
+        "width": 0.25,
+        "height": 0.25
+      },
+      "minecraft:physics": {
+        "has_gravity": true,
+        "has_collision": false
+      },
+      "minecraft:pushable": {
+        "is_pushable": false,
+        "is_pushable_by_piston": false
+      },
+      "minecraft:projectile": {
+        "on_hit": {
+          "impact_damage": {
+            "damage": 0
+          },
+          "remove_on_hit": {}
+        },
+        "power": 1.2,
+        "gravity": 0.03
+      },
+      "minecraft:type_family": {
+        "family": [
+          "projectile",
+          "inanimate"
+        ]
+      }
+    }
+  }
+}

@@ -502,6 +502,21 @@
     },
     "upgrade_vitality_3": {
       "textures": "textures/items/upgrade_vitality_3"
+    },
+    "industrial_planter": {
+      "textures": "textures/items/industrial_planter"
+    },
+    "industrial_fertilizer": {
+      "textures": "textures/items/industrial_fertilizer"
+    },
+    "industrial_harvester": {
+      "textures": "textures/items/industrial_harvester"
+    },
+    "flecha_alvorada": {
+      "textures": "textures/items/flecha_alvorada"
+    },
+    "pocao_infestacao": {
+      "textures": "textures/items/pocao_infestacao"
     }
   }
 }

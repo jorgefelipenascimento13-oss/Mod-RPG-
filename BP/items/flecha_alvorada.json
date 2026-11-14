@@ -1,0 +1,20 @@
+{
+  "format_version": "1.21.30",
+  "minecraft:item": {
+    "description": {
+      "identifier": "mod_rpg_rune:flecha_alvorada",
+      "menu_category": {
+        "category": "equipment"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "texture": "flecha_alvorada"
+      },
+      "minecraft:display_name": {
+        "value": "Flecha da Alvorada"
+      },
+      "minecraft:max_stack_size": 64
+    }
+  }
+}

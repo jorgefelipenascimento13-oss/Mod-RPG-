@@ -1,0 +1,37 @@
+{
+  "format_version": "1.21.30",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "mod_rpg_rune:industrial_fertilizer"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "IBI",
+      "MPM",
+      "ICI"
+    ],
+    "key": {
+      "I": {
+        "item": "minecraft:iron_ingot"
+      },
+      "B": {
+        "item": "minecraft:bone_block"
+      },
+      "M": {
+        "item": "minecraft:bone_meal"
+      },
+      "P": {
+        "item": "minecraft:piston"
+      },
+      "C": {
+        "item": "minecraft:chest"
+      }
+    },
+    "result": {
+      "item": "mod_rpg_rune:industrial_fertilizer",
+      "count": 1
+    }
+  }
+}
