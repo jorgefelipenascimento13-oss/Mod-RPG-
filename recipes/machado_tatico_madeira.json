@@ -1,0 +1,27 @@
+{
+  "format_version": "1.21.30",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "mod_rpg_rune:machado_tatico_madeira"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "XX.",
+      "XS.",
+      "..."
+    ],
+    "key": {
+      "X": {
+        "item": "minecraft:oak_planks"
+      },
+      "S": {
+        "item": "minecraft:stick"
+      }
+    },
+    "result": {
+      "item": "mod_rpg_rune:machado_tatico_madeira"
+    }
+  }
+}

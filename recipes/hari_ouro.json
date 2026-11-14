@@ -1,0 +1,27 @@
+{
+  "format_version": "1.21.30",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "mod_rpg_rune:hari_ouro"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "XXS",
+      "...",
+      "..."
+    ],
+    "key": {
+      "X": {
+        "item": "minecraft:gold_ingot"
+      },
+      "S": {
+        "item": "minecraft:stick"
+      }
+    },
+    "result": {
+      "item": "mod_rpg_rune:hari_ouro"
+    }
+  }
+}
