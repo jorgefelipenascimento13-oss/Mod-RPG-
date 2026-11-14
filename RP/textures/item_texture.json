@@ -517,6 +517,9 @@
     },
     "pocao_infestacao": {
       "textures": "textures/items/pocao_infestacao"
+    },
+    "mesa_de_runas": {
+      "textures": "textures/items/mesa_de_runas"
     }
   }
 }

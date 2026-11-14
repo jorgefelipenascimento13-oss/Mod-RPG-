@@ -12,6 +12,9 @@
     },
     "industrial_harvester": {
       "textures": "textures/blocks/industrial_harvester"
+    },
+    "mesa_de_runas": {
+      "textures": "textures/blocks/mesa_de_runas"
     }
   }
 }

@@ -1,0 +1,31 @@
+{
+  "format_version": "1.21.30",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "mod_rpg_rune:mesa_de_runas"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "GEG",
+      "EOE",
+      "GEG"
+    ],
+    "key": {
+      "G": {
+        "item": "minecraft:gold_ingot"
+      },
+      "E": {
+        "item": "minecraft:emerald"
+      },
+      "O": {
+        "item": "minecraft:obsidian"
+      }
+    },
+    "result": {
+      "item": "mod_rpg_rune:mesa_de_runas",
+      "count": 1
+    }
+  }
+}
