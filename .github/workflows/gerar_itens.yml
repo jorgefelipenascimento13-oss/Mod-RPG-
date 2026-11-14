@@ -1,4 +1,4 @@
-name: Gerar Itens do Mod
+name: Gerar Itens do Mod (BP)
 
 on:
   workflow_dispatch: # Permite rodar o script manualmente direto pelo site do GitHub
@@ -17,11 +17,12 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Executar script Python
+      - name: Executar script Python dentro do Behavior Pack
+        working-directory: ./BP   # <--- DIRECIONA O SCRIPT PARA A PASTA BP
         run: python gerar_itens.py
 
       - name: Commitar e enviar os arquivos gerados
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "🤖 Auto-gerar 105 arquivos JSON de itens via GitHub Actions"
+          commit_message: "🤖 Auto-gerar arquivos JSON de itens dentro do Behavior Pack (BP)"
           branch: main # Ajuste para 'master' se a branch principal do seu repo for master
