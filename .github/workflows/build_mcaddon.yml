@@ -1,0 +1,120 @@
+name: Empacotar Mod (.mcaddon) Limpo
+
+on:
+  workflow_dispatch: # Permite clicar e gerar o .mcaddon a qualquer momento
+
+jobs:
+  build-mcaddon:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Baixar código do repositório
+        uses: actions/checkout@v4
+
+      - name: Verificar e criar manifest.json (BP e RP) se não existirem
+        run: |
+          python3 -c '
+          import os, json, uuid
+
+          bp_uuid = "a1b2c3d4-1111-4444-8888-111111111111"
+          rp_uuid = "e5f6a7b8-2222-4444-8888-222222222222"
+
+          # Manifest do Behavior Pack (BP)
+          if not os.path.exists("BP/manifest.json"):
+              bp_manifest = {
+                  "format_version": 2,
+                  "header": {
+                      "name": "Mod RPG Rune - Behavior Pack",
+                      "description": "Armas, Runas, Upgrades e Blocos Industriais",
+                      "uuid": bp_uuid,
+                      "version": [1, 0, 0],
+                      "min_engine_version": [1, 21, 30]
+                  },
+                  "modules": [
+                      {
+                          "type": "data",
+                          "uuid": str(uuid.uuid4()),
+                          "version": [1, 0, 0]
+                      },
+                      {
+                          "type": "script",
+                          "language": "javascript",
+                          "uuid": str(uuid.uuid4()),
+                          "version": [1, 0, 0],
+                          "entry": "scripts/main.js"
+                      }
+                  ],
+                  "dependencies": [
+                      {
+                          "uuid": rp_uuid,
+                          "version": [1, 0, 0]
+                      },
+                      {
+                          "module_name": "@minecraft/server",
+                          "version": "1.14.0"
+                      }
+                  ]
+              }
+              # Se não existir scripts/main.js ainda, remove o módulo de script para não dar erro
+              if not os.path.exists("BP/scripts/main.js"):
+                  bp_manifest["modules"] = [m for m in bp_manifest["modules"] if m["type"] != "script"]
+                  bp_manifest["dependencies"] = [d for d in bp_manifest["dependencies"] if "module_name" not in d]
+
+              with open("BP/manifest.json", "w", encoding="utf-8") as f:
+                  json.dump(bp_manifest, f, indent=2)
+              print("✅ BP/manifest.json criado automaticamente!")
+
+          # Manifest do Resource Pack (RP)
+          if not os.path.exists("RP/manifest.json"):
+              rp_manifest = {
+                  "format_version": 2,
+                  "header": {
+                      "name": "Mod RPG Rune - Resource Pack",
+                      "description": "Texturas e traduções do Mod RPG Rune",
+                      "uuid": rp_uuid,
+                      "version": [1, 0, 0],
+                      "min_engine_version": [1, 21, 30]
+                  },
+                  "modules": [
+                      {
+                          "type": "resources",
+                          "uuid": str(uuid.uuid4()),
+                          "version": [1, 0, 0]
+                      }
+                  ]
+              }
+              with open("RP/manifest.json", "w", encoding="utf-8") as f:
+                  json.dump(rp_manifest, f, indent=2)
+              print("✅ RP/manifest.json criado automaticamente!")
+          '
+
+      - name: Criar pacote .mcaddon limpo (excluindo scripts .py e pastas inúteis)
+        run: |
+          rm -rf build_temp Mod_RPG_Rune.mcaddon
+          mkdir -p build_temp/BP build_temp/RP
+
+          # Copia o conteúdo de BP e RP ignorando arquivos .py e caches
+          rsync -av --exclude='*.py' --exclude='__pycache__' --exclude='.DS_Store' BP/ build_temp/BP/
+          rsync -av --exclude='*.py' --exclude='__pycache__' --exclude='.DS_Store' RP/ build_temp/RP/
+
+          # Compacta as duas pastas limpas para o formato .mcaddon
+          cd build_temp
+          zip -r ../Mod_RPG_Rune.mcaddon BP RP
+          cd ..
+          rm -rf build_temp
+
+      - name: Disponibilizar .mcaddon para download direto na tela do Actions
+        uses: actions/upload-artifact@v4
+        with:
+          name: Mod_RPG_Rune.mcaddon
+          path: Mod_RPG_Rune.mcaddon
+
+      - name: Salvar manifests e o .mcaddon no repositório
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add BP/manifest.json RP/manifest.json Mod_RPG_Rune.mcaddon
+          git commit -m "📦 Gerar Mod_RPG_Rune.mcaddon limpo e manifests" || echo "Sem mudanças"
+          git pull origin main --rebase
+          git push origin main
