@@ -1,0 +1,27 @@
+name: Gerar Mod Completo (Itens e Receitas)
+
+on:
+  workflow_dispatch: # Permite rodar manualmente na aba Actions do GitHub
+
+jobs:
+  gerar-mod:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Permite salvar os arquivos gerados direto no repositório
+    steps:
+      - name: Baixar código do repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Executar gerador unificado do mod
+        run: python gerar_mod.py
+
+      - name: Commitar e enviar os arquivos gerados
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "🛠️ Auto-gerar itens e receitas completas do mod via GitHub Actions"
+          branch: main # Altere para 'master' se a branch principal do seu repositório for master
