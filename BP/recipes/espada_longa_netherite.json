@@ -1,0 +1,23 @@
+{
+  "format_version": "1.21.30",
+  "minecraft:recipe_smithing_transform": {
+    "description": {
+      "identifier": "mod_rpg_rune:espada_longa_netherite"
+    },
+    "tags": [
+      "smithing_table"
+    ],
+    "template": {
+      "item": "minecraft:netherite_upgrade_smithing_template"
+    },
+    "base": {
+      "item": "mod_rpg_rune:espada_longa_aco"
+    },
+    "addition": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "result": {
+      "item": "mod_rpg_rune:espada_longa_netherite"
+    }
+  }
+}

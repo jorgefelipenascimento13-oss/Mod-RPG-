@@ -1,0 +1,36 @@
+{
+  "format_version": "1.21.30",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "mod_rpg_rune:paxel_cobre"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "ABC",
+      "DE.",
+      "..."
+    ],
+    "key": {
+      "A": {
+        "item": "minecraft:copper_pickaxe"
+      },
+      "B": {
+        "item": "minecraft:copper_axe"
+      },
+      "C": {
+        "item": "minecraft:copper_shovel"
+      },
+      "D": {
+        "item": "minecraft:copper_hoe"
+      },
+      "E": {
+        "item": "minecraft:copper_sword"
+      }
+    },
+    "result": {
+      "item": "mod_rpg_rune:paxel_cobre"
+    }
+  }
+}

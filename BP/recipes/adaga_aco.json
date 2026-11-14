@@ -1,0 +1,27 @@
+{
+  "format_version": "1.21.30",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "mod_rpg_rune:adaga_aco"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "...",
+      ".X.",
+      "..S"
+    ],
+    "key": {
+      "X": {
+        "item": "mod_rpg_rune:aco_ingot"
+      },
+      "S": {
+        "item": "minecraft:stick"
+      }
+    },
+    "result": {
+      "item": "mod_rpg_rune:adaga_aco"
+    }
+  }
+}
