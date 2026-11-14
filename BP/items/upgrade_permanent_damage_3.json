@@ -1,0 +1,20 @@
+{
+  "format_version": "1.21.30",
+  "minecraft:item": {
+    "description": {
+      "identifier": "mod_rpg_rune:upgrade_permanent_damage_3",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "texture": "upgrade_permanent_damage_3"
+      },
+      "minecraft:display_name": {
+        "value": "Upgrade de Dano Permanente III"
+      },
+      "minecraft:max_stack_size": 1
+    }
+  }
+}
