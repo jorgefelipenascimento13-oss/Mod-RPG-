@@ -32,6 +32,11 @@
     "result": {
       "item": "mod_rpg_rune:industrial_fertilizer",
       "count": 1
-    }
+    },
+    "unlock": [
+      {
+        "item": "minecraft:stick"
+      }
+    ]
   }
 }

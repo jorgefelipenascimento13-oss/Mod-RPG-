@@ -35,6 +35,11 @@
     "result": {
       "item": "mod_rpg_rune:industrial_planter",
       "count": 1
-    }
+    },
+    "unlock": [
+      {
+        "item": "minecraft:stick"
+      }
+    ]
   }
 }

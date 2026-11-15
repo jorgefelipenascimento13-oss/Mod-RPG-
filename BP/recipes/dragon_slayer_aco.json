@@ -22,6 +22,11 @@
     },
     "result": {
       "item": "mod_rpg_rune:dragon_slayer_aco"
-    }
+    },
+    "unlock": [
+      {
+        "item": "minecraft:stick"
+      }
+    ]
   }
 }

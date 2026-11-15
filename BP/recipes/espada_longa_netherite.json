@@ -18,6 +18,11 @@
     },
     "result": {
       "item": "mod_rpg_rune:espada_longa_netherite"
-    }
+    },
+    "unlock": [
+      {
+        "item": "minecraft:stick"
+      }
+    ]
   }
 }

@@ -22,6 +22,11 @@
     },
     "result": {
       "item": "mod_rpg_rune:adaga_ferro"
-    }
+    },
+    "unlock": [
+      {
+        "item": "minecraft:stick"
+      }
+    ]
   }
 }

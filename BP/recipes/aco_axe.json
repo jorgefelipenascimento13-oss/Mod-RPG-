@@ -22,6 +22,11 @@
     },
     "result": {
       "item": "mod_rpg_rune:aco_axe"
-    }
+    },
+    "unlock": [
+      {
+        "item": "minecraft:stick"
+      }
+    ]
   }
 }

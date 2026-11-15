@@ -2,398 +2,158 @@
   "resource_pack_name": "mod_rpg_rune",
   "texture_name": "atlas.items",
   "texture_data": {
-    "aco_axe": {
-      "textures": "textures/items/aco_axe"
-    },
-    "aco_hoe": {
-      "textures": "textures/items/aco_hoe"
-    },
-    "aco_ingot": {
-      "textures": "textures/items/aco_ingot"
-    },
-    "aco_pickaxe": {
-      "textures": "textures/items/aco_pickaxe"
-    },
-    "aco_shovel": {
-      "textures": "textures/items/aco_shovel"
-    },
-    "aco_sword": {
-      "textures": "textures/items/aco_sword"
-    },
-    "adaga_aco": {
-      "textures": "textures/items/adaga_aco"
-    },
-    "adaga_cobre": {
-      "textures": "textures/items/adaga_cobre"
-    },
-    "adaga_ferro": {
-      "textures": "textures/items/adaga_ferro"
-    },
-    "adaga_madeira": {
-      "textures": "textures/items/adaga_madeira"
-    },
-    "adaga_netherite": {
-      "textures": "textures/items/adaga_netherite"
-    },
-    "adaga_ouro": {
-      "textures": "textures/items/adaga_ouro"
-    },
-    "adaga_pedra": {
-      "textures": "textures/items/adaga_pedra"
-    },
-    "dragon_slayer_aco": {
-      "textures": "textures/items/dragon_slayer_aco"
-    },
-    "dragon_slayer_cobre": {
-      "textures": "textures/items/dragon_slayer_cobre"
-    },
-    "dragon_slayer_ferro": {
-      "textures": "textures/items/dragon_slayer_ferro"
-    },
-    "dragon_slayer_madeira": {
-      "textures": "textures/items/dragon_slayer_madeira"
-    },
-    "dragon_slayer_netherite": {
-      "textures": "textures/items/dragon_slayer_netherite"
-    },
-    "dragon_slayer_ouro": {
-      "textures": "textures/items/dragon_slayer_ouro"
-    },
-    "dragon_slayer_pedra": {
-      "textures": "textures/items/dragon_slayer_pedra"
-    },
-    "espada_longa_aco": {
-      "textures": "textures/items/espada_longa_aco"
-    },
-    "espada_longa_cobre": {
-      "textures": "textures/items/espada_longa_cobre"
-    },
-    "espada_longa_ferro": {
-      "textures": "textures/items/espada_longa_ferro"
-    },
-    "espada_longa_madeira": {
-      "textures": "textures/items/espada_longa_madeira"
-    },
-    "espada_longa_netherite": {
-      "textures": "textures/items/espada_longa_netherite"
-    },
-    "espada_longa_ouro": {
-      "textures": "textures/items/espada_longa_ouro"
-    },
-    "espada_longa_pedra": {
-      "textures": "textures/items/espada_longa_pedra"
-    },
-    "hari_aco": {
-      "textures": "textures/items/hari_aco"
-    },
-    "hari_cobre": {
-      "textures": "textures/items/hari_cobre"
-    },
-    "hari_ferro": {
-      "textures": "textures/items/hari_ferro"
-    },
-    "hari_madeira": {
-      "textures": "textures/items/hari_madeira"
-    },
-    "hari_netherite": {
-      "textures": "textures/items/hari_netherite"
-    },
-    "hari_ouro": {
-      "textures": "textures/items/hari_ouro"
-    },
-    "hari_pedra": {
-      "textures": "textures/items/hari_pedra"
-    },
-    "katana_aco": {
-      "textures": "textures/items/katana_aco"
-    },
     "katana_cobre": {
       "textures": "textures/items/katana_cobre"
-    },
-    "katana_ferro": {
-      "textures": "textures/items/katana_ferro"
-    },
-    "katana_madeira": {
-      "textures": "textures/items/katana_madeira"
-    },
-    "katana_netherite": {
-      "textures": "textures/items/katana_netherite"
-    },
-    "katana_ouro": {
-      "textures": "textures/items/katana_ouro"
-    },
-    "katana_pedra": {
-      "textures": "textures/items/katana_pedra"
-    },
-    "machado_de_batalha_aco": {
-      "textures": "textures/items/machado_de_batalha_aco"
-    },
-    "machado_de_batalha_cobre": {
-      "textures": "textures/items/machado_de_batalha_cobre"
-    },
-    "machado_de_batalha_ferro": {
-      "textures": "textures/items/machado_de_batalha_ferro"
-    },
-    "machado_de_batalha_madeira": {
-      "textures": "textures/items/machado_de_batalha_madeira"
-    },
-    "machado_de_batalha_netherite": {
-      "textures": "textures/items/machado_de_batalha_netherite"
-    },
-    "machado_de_batalha_ouro": {
-      "textures": "textures/items/machado_de_batalha_ouro"
-    },
-    "machado_de_batalha_pedra": {
-      "textures": "textures/items/machado_de_batalha_pedra"
-    },
-    "machado_tatico_aco": {
-      "textures": "textures/items/machado_tatico_aco"
-    },
-    "machado_tatico_cobre": {
-      "textures": "textures/items/machado_tatico_cobre"
-    },
-    "machado_tatico_ferro": {
-      "textures": "textures/items/machado_tatico_ferro"
-    },
-    "machado_tatico_madeira": {
-      "textures": "textures/items/machado_tatico_madeira"
-    },
-    "machado_tatico_netherite": {
-      "textures": "textures/items/machado_tatico_netherite"
-    },
-    "machado_tatico_ouro": {
-      "textures": "textures/items/machado_tatico_ouro"
     },
     "machado_tatico_pedra": {
       "textures": "textures/items/machado_tatico_pedra"
     },
-    "paxel_aco": {
-      "textures": "textures/items/paxel_aco"
-    },
-    "paxel_cobre": {
-      "textures": "textures/items/paxel_cobre"
-    },
-    "paxel_ferro": {
-      "textures": "textures/items/paxel_ferro"
-    },
-    "paxel_madeira": {
-      "textures": "textures/items/paxel_madeira"
-    },
-    "paxel_netherite": {
-      "textures": "textures/items/paxel_netherite"
-    },
-    "paxel_ouro": {
-      "textures": "textures/items/paxel_ouro"
-    },
-    "paxel_pedra": {
-      "textures": "textures/items/paxel_pedra"
-    },
-    "runa_bastion_1": {
-      "textures": "textures/items/runa_bastion_1"
-    },
-    "runa_bastion_2": {
-      "textures": "textures/items/runa_bastion_2"
-    },
-    "runa_bastion_3": {
-      "textures": "textures/items/runa_bastion_3"
-    },
-    "runa_bleeding_1": {
-      "textures": "textures/items/runa_bleeding_1"
-    },
-    "runa_bleeding_2": {
-      "textures": "textures/items/runa_bleeding_2"
-    },
-    "runa_bleeding_3": {
-      "textures": "textures/items/runa_bleeding_3"
+    "adaga_cobre": {
+      "textures": "textures/items/adaga_cobre"
     },
     "runa_counter_1": {
       "textures": "textures/items/runa_counter_1"
     },
-    "runa_counter_2": {
-      "textures": "textures/items/runa_counter_2"
+    "upgrade_projectile_damage_1": {
+      "textures": "textures/items/upgrade_projectile_damage_1"
     },
     "runa_counter_3": {
       "textures": "textures/items/runa_counter_3"
     },
-    "runa_crimson_1": {
-      "textures": "textures/items/runa_crimson_1"
-    },
-    "runa_crimson_2": {
-      "textures": "textures/items/runa_crimson_2"
-    },
-    "runa_crimson_3": {
-      "textures": "textures/items/runa_crimson_3"
-    },
-    "runa_dawn_1": {
-      "textures": "textures/items/runa_dawn_1"
-    },
-    "runa_dawn_2": {
-      "textures": "textures/items/runa_dawn_2"
-    },
-    "runa_dawn_3": {
-      "textures": "textures/items/runa_dawn_3"
-    },
-    "runa_decomposition_1": {
-      "textures": "textures/items/runa_decomposition_1"
-    },
-    "runa_decomposition_2": {
-      "textures": "textures/items/runa_decomposition_2"
-    },
-    "runa_decomposition_3": {
-      "textures": "textures/items/runa_decomposition_3"
-    },
-    "runa_earthquake_1": {
-      "textures": "textures/items/runa_earthquake_1"
-    },
-    "runa_earthquake_2": {
-      "textures": "textures/items/runa_earthquake_2"
-    },
-    "runa_earthquake_3": {
-      "textures": "textures/items/runa_earthquake_3"
-    },
-    "runa_echo_1": {
-      "textures": "textures/items/runa_echo_1"
-    },
-    "runa_echo_2": {
-      "textures": "textures/items/runa_echo_2"
-    },
-    "runa_echo_3": {
-      "textures": "textures/items/runa_echo_3"
-    },
-    "runa_fissure_1": {
-      "textures": "textures/items/runa_fissure_1"
-    },
-    "runa_fissure_2": {
-      "textures": "textures/items/runa_fissure_2"
-    },
-    "runa_fissure_3": {
-      "textures": "textures/items/runa_fissure_3"
-    },
-    "runa_flame_lightning_1": {
-      "textures": "textures/items/runa_flame_lightning_1"
-    },
-    "runa_flame_lightning_2": {
-      "textures": "textures/items/runa_flame_lightning_2"
-    },
-    "runa_flame_lightning_3": {
-      "textures": "textures/items/runa_flame_lightning_3"
-    },
-    "runa_freezing_1": {
-      "textures": "textures/items/runa_freezing_1"
-    },
-    "runa_freezing_2": {
-      "textures": "textures/items/runa_freezing_2"
-    },
-    "runa_freezing_3": {
-      "textures": "textures/items/runa_freezing_3"
-    },
-    "runa_glacial_1": {
-      "textures": "textures/items/runa_glacial_1"
-    },
-    "runa_glacial_2": {
-      "textures": "textures/items/runa_glacial_2"
-    },
-    "runa_glacial_3": {
-      "textures": "textures/items/runa_glacial_3"
-    },
-    "runa_lightning_1": {
-      "textures": "textures/items/runa_lightning_1"
-    },
-    "runa_lightning_2": {
-      "textures": "textures/items/runa_lightning_2"
-    },
-    "runa_lightning_3": {
-      "textures": "textures/items/runa_lightning_3"
-    },
-    "runa_mirror_1": {
-      "textures": "textures/items/runa_mirror_1"
-    },
     "runa_mirror_2": {
       "textures": "textures/items/runa_mirror_2"
     },
-    "runa_mirror_3": {
-      "textures": "textures/items/runa_mirror_3"
+    "runa_bleeding_3": {
+      "textures": "textures/items/runa_bleeding_3"
     },
-    "runa_poison_1": {
-      "textures": "textures/items/runa_poison_1"
-    },
-    "runa_poison_2": {
-      "textures": "textures/items/runa_poison_2"
+    "machado_de_batalha_ferro": {
+      "textures": "textures/items/machado_de_batalha_ferro"
     },
     "runa_poison_3": {
       "textures": "textures/items/runa_poison_3"
     },
-    "runa_purification_1": {
-      "textures": "textures/items/runa_purification_1"
+    "runa_echo_3": {
+      "textures": "textures/items/runa_echo_3"
     },
-    "runa_purification_2": {
-      "textures": "textures/items/runa_purification_2"
+    "runa_echo_1": {
+      "textures": "textures/items/runa_echo_1"
     },
-    "runa_purification_3": {
-      "textures": "textures/items/runa_purification_3"
+    "aco_hoe": {
+      "textures": "textures/items/aco_hoe"
     },
-    "runa_putrid_1": {
-      "textures": "textures/items/runa_putrid_1"
+    "machado_de_batalha_ouro": {
+      "textures": "textures/items/machado_de_batalha_ouro"
     },
-    "runa_putrid_2": {
-      "textures": "textures/items/runa_putrid_2"
+    "runa_void_3": {
+      "textures": "textures/items/runa_void_3"
     },
-    "runa_putrid_3": {
-      "textures": "textures/items/runa_putrid_3"
-    },
-    "runa_seismic_1": {
-      "textures": "textures/items/runa_seismic_1"
+    "runa_lightning_2": {
+      "textures": "textures/items/runa_lightning_2"
     },
     "runa_seismic_2": {
       "textures": "textures/items/runa_seismic_2"
     },
-    "runa_seismic_3": {
-      "textures": "textures/items/runa_seismic_3"
+    "runa_fissure_2": {
+      "textures": "textures/items/runa_fissure_2"
     },
-    "runa_soul_fire_1": {
-      "textures": "textures/items/runa_soul_fire_1"
+    "runa_echo_2": {
+      "textures": "textures/items/runa_echo_2"
     },
-    "runa_soul_fire_2": {
-      "textures": "textures/items/runa_soul_fire_2"
+    "dragon_slayer_cobre": {
+      "textures": "textures/items/dragon_slayer_cobre"
     },
-    "runa_soul_fire_3": {
-      "textures": "textures/items/runa_soul_fire_3"
+    "runa_glacial_3": {
+      "textures": "textures/items/runa_glacial_3"
     },
-    "runa_sylvan_1": {
-      "textures": "textures/items/runa_sylvan_1"
+    "dragon_slayer_ferro": {
+      "textures": "textures/items/dragon_slayer_ferro"
     },
-    "runa_sylvan_2": {
-      "textures": "textures/items/runa_sylvan_2"
+    "runa_freezing_1": {
+      "textures": "textures/items/runa_freezing_1"
     },
-    "runa_sylvan_3": {
-      "textures": "textures/items/runa_sylvan_3"
+    "hari_cobre": {
+      "textures": "textures/items/hari_cobre"
     },
-    "runa_tempest_1": {
-      "textures": "textures/items/runa_tempest_1"
+    "espada_longa_ferro": {
+      "textures": "textures/items/espada_longa_ferro"
     },
-    "runa_tempest_2": {
-      "textures": "textures/items/runa_tempest_2"
+    "runa_decomposition_3": {
+      "textures": "textures/items/runa_decomposition_3"
     },
-    "runa_tempest_3": {
-      "textures": "textures/items/runa_tempest_3"
+    "upgrade_guard_recovery_3": {
+      "textures": "textures/items/upgrade_guard_recovery_3"
     },
-    "runa_vampirism_1": {
-      "textures": "textures/items/runa_vampirism_1"
+    "dragon_slayer_pedra": {
+      "textures": "textures/items/dragon_slayer_pedra"
     },
-    "runa_vampirism_2": {
-      "textures": "textures/items/runa_vampirism_2"
+    "dragon_slayer_madeira": {
+      "textures": "textures/items/dragon_slayer_madeira"
     },
-    "runa_vampirism_3": {
-      "textures": "textures/items/runa_vampirism_3"
+    "upgrade_resistance_2": {
+      "textures": "textures/items/upgrade_resistance_2"
+    },
+    "aco_pickaxe": {
+      "textures": "textures/items/aco_pickaxe"
+    },
+    "machado_tatico_ferro": {
+      "textures": "textures/items/machado_tatico_ferro"
+    },
+    "upgrade_permanent_damage_3": {
+      "textures": "textures/items/upgrade_permanent_damage_3"
+    },
+    "katana_ferro": {
+      "textures": "textures/items/katana_ferro"
     },
     "runa_void_1": {
       "textures": "textures/items/runa_void_1"
     },
-    "runa_void_2": {
-      "textures": "textures/items/runa_void_2"
+    "runa_mirror_3": {
+      "textures": "textures/items/runa_mirror_3"
     },
-    "runa_void_3": {
-      "textures": "textures/items/runa_void_3"
+    "machado_de_batalha_netherite": {
+      "textures": "textures/items/machado_de_batalha_netherite"
+    },
+    "espada_longa_aco": {
+      "textures": "textures/items/espada_longa_aco"
+    },
+    "runa_freezing_2": {
+      "textures": "textures/items/runa_freezing_2"
+    },
+    "upgrade_unbreaking_1": {
+      "textures": "textures/items/upgrade_unbreaking_1"
+    },
+    "upgrade_projectile_speed_3": {
+      "textures": "textures/items/upgrade_projectile_speed_3"
+    },
+    "runa_crimson_2": {
+      "textures": "textures/items/runa_crimson_2"
+    },
+    "runa_vampirism_3": {
+      "textures": "textures/items/runa_vampirism_3"
+    },
+    "paxel_cobre": {
+      "textures": "textures/items/paxel_cobre"
+    },
+    "runa_poison_1": {
+      "textures": "textures/items/runa_poison_1"
+    },
+    "espada_longa_netherite": {
+      "textures": "textures/items/espada_longa_netherite"
+    },
+    "runa_dawn_3": {
+      "textures": "textures/items/runa_dawn_3"
+    },
+    "upgrade_steady_guard_2": {
+      "textures": "textures/items/upgrade_steady_guard_2"
+    },
+    "runa_putrid_3": {
+      "textures": "textures/items/runa_putrid_3"
+    },
+    "paxel_aco": {
+      "textures": "textures/items/paxel_aco"
+    },
+    "runa_dawn_1": {
+      "textures": "textures/items/runa_dawn_1"
     },
     "runa_zephyr_1": {
       "textures": "textures/items/runa_zephyr_1"
@@ -401,122 +161,362 @@
     "runa_zephyr_2": {
       "textures": "textures/items/runa_zephyr_2"
     },
-    "runa_zephyr_3": {
-      "textures": "textures/items/runa_zephyr_3"
-    },
-    "upgrade_block_absorption_1": {
-      "textures": "textures/items/upgrade_block_absorption_1"
-    },
-    "upgrade_block_absorption_2": {
-      "textures": "textures/items/upgrade_block_absorption_2"
-    },
-    "upgrade_block_absorption_3": {
-      "textures": "textures/items/upgrade_block_absorption_3"
-    },
-    "upgrade_efficiency_1": {
-      "textures": "textures/items/upgrade_efficiency_1"
-    },
-    "upgrade_efficiency_2": {
-      "textures": "textures/items/upgrade_efficiency_2"
-    },
-    "upgrade_efficiency_3": {
-      "textures": "textures/items/upgrade_efficiency_3"
-    },
-    "upgrade_guard_recovery_1": {
-      "textures": "textures/items/upgrade_guard_recovery_1"
-    },
-    "upgrade_guard_recovery_2": {
-      "textures": "textures/items/upgrade_guard_recovery_2"
-    },
-    "upgrade_guard_recovery_3": {
-      "textures": "textures/items/upgrade_guard_recovery_3"
-    },
-    "upgrade_permanent_damage_1": {
-      "textures": "textures/items/upgrade_permanent_damage_1"
-    },
-    "upgrade_permanent_damage_2": {
-      "textures": "textures/items/upgrade_permanent_damage_2"
-    },
-    "upgrade_permanent_damage_3": {
-      "textures": "textures/items/upgrade_permanent_damage_3"
-    },
-    "upgrade_projectile_damage_1": {
-      "textures": "textures/items/upgrade_projectile_damage_1"
-    },
-    "upgrade_projectile_damage_2": {
-      "textures": "textures/items/upgrade_projectile_damage_2"
-    },
-    "upgrade_projectile_damage_3": {
-      "textures": "textures/items/upgrade_projectile_damage_3"
-    },
-    "upgrade_projectile_speed_1": {
-      "textures": "textures/items/upgrade_projectile_speed_1"
-    },
-    "upgrade_projectile_speed_2": {
-      "textures": "textures/items/upgrade_projectile_speed_2"
-    },
-    "upgrade_projectile_speed_3": {
-      "textures": "textures/items/upgrade_projectile_speed_3"
-    },
-    "upgrade_reload_speed_1": {
-      "textures": "textures/items/upgrade_reload_speed_1"
+    "runa_purification_2": {
+      "textures": "textures/items/runa_purification_2"
     },
     "upgrade_reload_speed_2": {
       "textures": "textures/items/upgrade_reload_speed_2"
     },
+    "runa_dawn_2": {
+      "textures": "textures/items/runa_dawn_2"
+    },
+    "katana_ouro": {
+      "textures": "textures/items/katana_ouro"
+    },
+    "runa_soul_fire_2": {
+      "textures": "textures/items/runa_soul_fire_2"
+    },
+    "paxel_madeira": {
+      "textures": "textures/items/paxel_madeira"
+    },
+    "runa_fissure_1": {
+      "textures": "textures/items/runa_fissure_1"
+    },
+    "upgrade_reload_speed_1": {
+      "textures": "textures/items/upgrade_reload_speed_1"
+    },
+    "runa_soul_fire_1": {
+      "textures": "textures/items/runa_soul_fire_1"
+    },
     "upgrade_reload_speed_3": {
       "textures": "textures/items/upgrade_reload_speed_3"
     },
-    "upgrade_resistance_1": {
-      "textures": "textures/items/upgrade_resistance_1"
+    "runa_bleeding_2": {
+      "textures": "textures/items/runa_bleeding_2"
     },
-    "upgrade_resistance_2": {
-      "textures": "textures/items/upgrade_resistance_2"
+    "runa_bastion_1": {
+      "textures": "textures/items/runa_bastion_1"
     },
-    "upgrade_resistance_3": {
-      "textures": "textures/items/upgrade_resistance_3"
+    "runa_tempest_1": {
+      "textures": "textures/items/runa_tempest_1"
     },
-    "upgrade_steady_guard_1": {
-      "textures": "textures/items/upgrade_steady_guard_1"
+    "machado_tatico_madeira": {
+      "textures": "textures/items/machado_tatico_madeira"
     },
-    "upgrade_steady_guard_2": {
-      "textures": "textures/items/upgrade_steady_guard_2"
-    },
-    "upgrade_steady_guard_3": {
-      "textures": "textures/items/upgrade_steady_guard_3"
-    },
-    "upgrade_unbreaking_1": {
-      "textures": "textures/items/upgrade_unbreaking_1"
-    },
-    "upgrade_unbreaking_2": {
-      "textures": "textures/items/upgrade_unbreaking_2"
-    },
-    "upgrade_unbreaking_3": {
-      "textures": "textures/items/upgrade_unbreaking_3"
-    },
-    "upgrade_vitality_1": {
-      "textures": "textures/items/upgrade_vitality_1"
-    },
-    "upgrade_vitality_2": {
-      "textures": "textures/items/upgrade_vitality_2"
-    },
-    "upgrade_vitality_3": {
-      "textures": "textures/items/upgrade_vitality_3"
-    },
-    "industrial_planter": {
-      "textures": "textures/items/industrial_planter"
-    },
-    "industrial_fertilizer": {
-      "textures": "textures/items/industrial_fertilizer"
-    },
-    "industrial_harvester": {
-      "textures": "textures/items/industrial_harvester"
+    "runa_zephyr_3": {
+      "textures": "textures/items/runa_zephyr_3"
     },
     "flecha_alvorada": {
       "textures": "textures/items/flecha_alvorada"
     },
+    "machado_tatico_aco": {
+      "textures": "textures/items/machado_tatico_aco"
+    },
+    "aco_shovel": {
+      "textures": "textures/items/aco_shovel"
+    },
+    "espada_longa_madeira": {
+      "textures": "textures/items/espada_longa_madeira"
+    },
+    "katana_madeira": {
+      "textures": "textures/items/katana_madeira"
+    },
+    "runa_vampirism_2": {
+      "textures": "textures/items/runa_vampirism_2"
+    },
+    "upgrade_unbreaking_3": {
+      "textures": "textures/items/upgrade_unbreaking_3"
+    },
+    "industrial_fertilizer": {
+      "textures": "textures/items/industrial_fertilizer"
+    },
+    "upgrade_efficiency_1": {
+      "textures": "textures/items/upgrade_efficiency_1"
+    },
+    "runa_decomposition_1": {
+      "textures": "textures/items/runa_decomposition_1"
+    },
+    "upgrade_resistance_1": {
+      "textures": "textures/items/upgrade_resistance_1"
+    },
+    "hari_netherite": {
+      "textures": "textures/items/hari_netherite"
+    },
+    "upgrade_vitality_2": {
+      "textures": "textures/items/upgrade_vitality_2"
+    },
+    "dragon_slayer_aco": {
+      "textures": "textures/items/dragon_slayer_aco"
+    },
+    "upgrade_vitality_1": {
+      "textures": "textures/items/upgrade_vitality_1"
+    },
+    "machado_tatico_netherite": {
+      "textures": "textures/items/machado_tatico_netherite"
+    },
+    "runa_earthquake_2": {
+      "textures": "textures/items/runa_earthquake_2"
+    },
+    "runa_purification_1": {
+      "textures": "textures/items/runa_purification_1"
+    },
+    "machado_de_batalha_pedra": {
+      "textures": "textures/items/machado_de_batalha_pedra"
+    },
+    "runa_glacial_2": {
+      "textures": "textures/items/runa_glacial_2"
+    },
+    "runa_counter_2": {
+      "textures": "textures/items/runa_counter_2"
+    },
+    "upgrade_permanent_damage_1": {
+      "textures": "textures/items/upgrade_permanent_damage_1"
+    },
+    "upgrade_projectile_speed_1": {
+      "textures": "textures/items/upgrade_projectile_speed_1"
+    },
+    "machado_de_batalha_madeira": {
+      "textures": "textures/items/machado_de_batalha_madeira"
+    },
+    "runa_seismic_3": {
+      "textures": "textures/items/runa_seismic_3"
+    },
+    "dragon_slayer_netherite": {
+      "textures": "textures/items/dragon_slayer_netherite"
+    },
+    "paxel_pedra": {
+      "textures": "textures/items/paxel_pedra"
+    },
+    "runa_flame_lightning_3": {
+      "textures": "textures/items/runa_flame_lightning_3"
+    },
+    "upgrade_efficiency_3": {
+      "textures": "textures/items/upgrade_efficiency_3"
+    },
+    "runa_decomposition_2": {
+      "textures": "textures/items/runa_decomposition_2"
+    },
+    "upgrade_block_absorption_1": {
+      "textures": "textures/items/upgrade_block_absorption_1"
+    },
+    "upgrade_projectile_speed_2": {
+      "textures": "textures/items/upgrade_projectile_speed_2"
+    },
+    "runa_fissure_3": {
+      "textures": "textures/items/runa_fissure_3"
+    },
+    "runa_tempest_2": {
+      "textures": "textures/items/runa_tempest_2"
+    },
+    "runa_sylvan_1": {
+      "textures": "textures/items/runa_sylvan_1"
+    },
+    "runa_flame_lightning_2": {
+      "textures": "textures/items/runa_flame_lightning_2"
+    },
+    "runa_bastion_2": {
+      "textures": "textures/items/runa_bastion_2"
+    },
+    "upgrade_steady_guard_3": {
+      "textures": "textures/items/upgrade_steady_guard_3"
+    },
+    "runa_earthquake_3": {
+      "textures": "textures/items/runa_earthquake_3"
+    },
+    "runa_seismic_1": {
+      "textures": "textures/items/runa_seismic_1"
+    },
+    "espada_longa_pedra": {
+      "textures": "textures/items/espada_longa_pedra"
+    },
+    "runa_crimson_3": {
+      "textures": "textures/items/runa_crimson_3"
+    },
+    "runa_mirror_1": {
+      "textures": "textures/items/runa_mirror_1"
+    },
+    "upgrade_block_absorption_2": {
+      "textures": "textures/items/upgrade_block_absorption_2"
+    },
+    "hari_pedra": {
+      "textures": "textures/items/hari_pedra"
+    },
+    "runa_putrid_2": {
+      "textures": "textures/items/runa_putrid_2"
+    },
+    "runa_putrid_1": {
+      "textures": "textures/items/runa_putrid_1"
+    },
+    "runa_purification_3": {
+      "textures": "textures/items/runa_purification_3"
+    },
+    "runa_bleeding_1": {
+      "textures": "textures/items/runa_bleeding_1"
+    },
+    "runa_poison_2": {
+      "textures": "textures/items/runa_poison_2"
+    },
+    "runa_freezing_3": {
+      "textures": "textures/items/runa_freezing_3"
+    },
+    "aco_axe": {
+      "textures": "textures/items/aco_axe"
+    },
+    "machado_de_batalha_aco": {
+      "textures": "textures/items/machado_de_batalha_aco"
+    },
+    "adaga_aco": {
+      "textures": "textures/items/adaga_aco"
+    },
+    "paxel_netherite": {
+      "textures": "textures/items/paxel_netherite"
+    },
+    "adaga_pedra": {
+      "textures": "textures/items/adaga_pedra"
+    },
+    "upgrade_steady_guard_1": {
+      "textures": "textures/items/upgrade_steady_guard_1"
+    },
+    "upgrade_guard_recovery_2": {
+      "textures": "textures/items/upgrade_guard_recovery_2"
+    },
+    "espada_longa_cobre": {
+      "textures": "textures/items/espada_longa_cobre"
+    },
+    "runa_bastion_3": {
+      "textures": "textures/items/runa_bastion_3"
+    },
+    "runa_sylvan_2": {
+      "textures": "textures/items/runa_sylvan_2"
+    },
+    "runa_tempest_3": {
+      "textures": "textures/items/runa_tempest_3"
+    },
+    "runa_lightning_3": {
+      "textures": "textures/items/runa_lightning_3"
+    },
+    "katana_netherite": {
+      "textures": "textures/items/katana_netherite"
+    },
+    "runa_lightning_1": {
+      "textures": "textures/items/runa_lightning_1"
+    },
+    "adaga_madeira": {
+      "textures": "textures/items/adaga_madeira"
+    },
+    "runa_crimson_1": {
+      "textures": "textures/items/runa_crimson_1"
+    },
     "pocao_infestacao": {
       "textures": "textures/items/pocao_infestacao"
+    },
+    "upgrade_guard_recovery_1": {
+      "textures": "textures/items/upgrade_guard_recovery_1"
+    },
+    "upgrade_projectile_damage_2": {
+      "textures": "textures/items/upgrade_projectile_damage_2"
+    },
+    "upgrade_efficiency_2": {
+      "textures": "textures/items/upgrade_efficiency_2"
+    },
+    "machado_de_batalha_cobre": {
+      "textures": "textures/items/machado_de_batalha_cobre"
+    },
+    "machado_tatico_ouro": {
+      "textures": "textures/items/machado_tatico_ouro"
+    },
+    "adaga_ouro": {
+      "textures": "textures/items/adaga_ouro"
+    },
+    "hari_ouro": {
+      "textures": "textures/items/hari_ouro"
+    },
+    "upgrade_permanent_damage_2": {
+      "textures": "textures/items/upgrade_permanent_damage_2"
+    },
+    "upgrade_projectile_damage_3": {
+      "textures": "textures/items/upgrade_projectile_damage_3"
+    },
+    "runa_flame_lightning_1": {
+      "textures": "textures/items/runa_flame_lightning_1"
+    },
+    "aco_ingot": {
+      "textures": "textures/items/aco_ingot"
+    },
+    "runa_earthquake_1": {
+      "textures": "textures/items/runa_earthquake_1"
+    },
+    "dragon_slayer_ouro": {
+      "textures": "textures/items/dragon_slayer_ouro"
+    },
+    "paxel_ouro": {
+      "textures": "textures/items/paxel_ouro"
+    },
+    "upgrade_vitality_3": {
+      "textures": "textures/items/upgrade_vitality_3"
+    },
+    "upgrade_block_absorption_3": {
+      "textures": "textures/items/upgrade_block_absorption_3"
+    },
+    "aco_sword": {
+      "textures": "textures/items/aco_sword"
+    },
+    "adaga_ferro": {
+      "textures": "textures/items/adaga_ferro"
+    },
+    "hari_aco": {
+      "textures": "textures/items/hari_aco"
+    },
+    "hari_ferro": {
+      "textures": "textures/items/hari_ferro"
+    },
+    "upgrade_resistance_3": {
+      "textures": "textures/items/upgrade_resistance_3"
+    },
+    "runa_glacial_1": {
+      "textures": "textures/items/runa_glacial_1"
+    },
+    "katana_aco": {
+      "textures": "textures/items/katana_aco"
+    },
+    "upgrade_unbreaking_2": {
+      "textures": "textures/items/upgrade_unbreaking_2"
+    },
+    "industrial_planter": {
+      "textures": "textures/items/industrial_planter"
+    },
+    "hari_madeira": {
+      "textures": "textures/items/hari_madeira"
+    },
+    "runa_vampirism_1": {
+      "textures": "textures/items/runa_vampirism_1"
+    },
+    "adaga_netherite": {
+      "textures": "textures/items/adaga_netherite"
+    },
+    "industrial_harvester": {
+      "textures": "textures/items/industrial_harvester"
+    },
+    "katana_pedra": {
+      "textures": "textures/items/katana_pedra"
+    },
+    "runa_sylvan_3": {
+      "textures": "textures/items/runa_sylvan_3"
+    },
+    "machado_tatico_cobre": {
+      "textures": "textures/items/machado_tatico_cobre"
+    },
+    "runa_soul_fire_3": {
+      "textures": "textures/items/runa_soul_fire_3"
+    },
+    "runa_void_2": {
+      "textures": "textures/items/runa_void_2"
+    },
+    "espada_longa_ouro": {
+      "textures": "textures/items/espada_longa_ouro"
+    },
+    "paxel_ferro": {
+      "textures": "textures/items/paxel_ferro"
     },
     "mesa_de_runas": {
       "textures": "textures/items/mesa_de_runas"

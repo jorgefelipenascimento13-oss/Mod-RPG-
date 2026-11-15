@@ -18,6 +18,11 @@
     "result": {
       "item": "mod_rpg_rune:upgrade_permanent_damage_3",
       "count": 1
-    }
+    },
+    "unlock": [
+      {
+        "item": "minecraft:stick"
+      }
+    ]
   }
 }

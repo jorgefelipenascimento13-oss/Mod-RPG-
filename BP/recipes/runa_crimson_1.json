@@ -23,6 +23,11 @@
     "result": {
       "item": "mod_rpg_rune:runa_crimson_1",
       "count": 1
-    }
+    },
+    "unlock": [
+      {
+        "item": "minecraft:stick"
+      }
+    ]
   }
 }

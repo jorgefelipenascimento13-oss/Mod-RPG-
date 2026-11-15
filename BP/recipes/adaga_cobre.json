@@ -22,6 +22,11 @@
     },
     "result": {
       "item": "mod_rpg_rune:adaga_cobre"
-    }
+    },
+    "unlock": [
+      {
+        "item": "minecraft:stick"
+      }
+    ]
   }
 }

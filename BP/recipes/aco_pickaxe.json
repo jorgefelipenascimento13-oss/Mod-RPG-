@@ -22,6 +22,11 @@
     },
     "result": {
       "item": "mod_rpg_rune:aco_pickaxe"
-    }
+    },
+    "unlock": [
+      {
+        "item": "minecraft:stick"
+      }
+    ]
   }
 }

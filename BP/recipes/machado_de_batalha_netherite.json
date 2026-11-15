@@ -18,6 +18,11 @@
     },
     "result": {
       "item": "mod_rpg_rune:machado_de_batalha_netherite"
-    }
+    },
+    "unlock": [
+      {
+        "item": "minecraft:stick"
+      }
+    ]
   }
 }

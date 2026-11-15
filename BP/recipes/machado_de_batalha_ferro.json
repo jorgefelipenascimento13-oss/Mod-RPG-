@@ -22,6 +22,11 @@
     },
     "result": {
       "item": "mod_rpg_rune:machado_de_batalha_ferro"
-    }
+    },
+    "unlock": [
+      {
+        "item": "minecraft:stick"
+      }
+    ]
   }
 }

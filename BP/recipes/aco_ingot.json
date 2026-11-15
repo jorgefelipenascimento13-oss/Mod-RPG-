@@ -9,6 +9,11 @@
       "blast_furnace"
     ],
     "input": "minecraft:iron_ingot",
-    "output": "mod_rpg_rune:aco_ingot"
+    "output": "mod_rpg_rune:aco_ingot",
+    "unlock": [
+      {
+        "item": "minecraft:stick"
+      }
+    ]
   }
 }

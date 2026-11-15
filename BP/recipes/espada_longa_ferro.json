@@ -22,6 +22,11 @@
     },
     "result": {
       "item": "mod_rpg_rune:espada_longa_ferro"
-    }
+    },
+    "unlock": [
+      {
+        "item": "minecraft:stick"
+      }
+    ]
   }
 }
