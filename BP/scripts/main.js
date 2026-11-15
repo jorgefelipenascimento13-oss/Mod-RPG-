@@ -511,4 +511,403 @@ const PLANTABLE = {
   "minecraft:jungle_sapling":    { crop: "minecraft:jungle_sapling",   soil: ["dirt","grass_block","podzol"] },
   "minecraft:acacia_sapling":    { crop: "minecraft:acacia_sapling",   soil: ["dirt","grass_block","podzol"] },
   "minecraft:dark_oak_sapling":  { crop: "minecraft:dark_oak_sapling", soil: ["dirt","grass_block","podzol"] },
-  "minecraft:cherry_sapling":    { crop: "minecraft:cherry_sapling",   soil: ["dirt","grass_
+  "minecraft:cherry_sapling":    { crop: "minecraft:cherry_sapling",   soil: ["dirt","grass_block","podzol"] },
+  "minecraft:mangrove_propagule":{ crop: "minecraft:mangrove_propagule", soil: ["dirt","grass_block","podzol"] }
+};
+
+const HARVESTABLE = {
+  "minecraft:wheat":            { drop: "minecraft:wheat",           extra: ["minecraft:wheat_seeds"],   growth: true },
+  "minecraft:carrots":          { drop: "minecraft:carrot",          extra: [],                          growth: true },
+  "minecraft:potatoes":         { drop: "minecraft:potato",          extra: [],                          growth: true },
+  "minecraft:beetroot":         { drop: "minecraft:beetroot",        extra: ["minecraft:beetroot_seeds"], growth: true },
+  "minecraft:nether_wart":      { drop: "minecraft:nether_wart",     extra: [],                          growth: true },
+  "minecraft:sweet_berry_bush": { drop: "minecraft:sweet_berries",   extra: [],                          growth: true },
+  "minecraft:torchflower_crop": { drop: "minecraft:torchflower",     extra: [],                          growth: true },
+  "minecraft:pitcher_crop":     { drop: "minecraft:pitcher_plant",   extra: [],                          growth: true },
+  "minecraft:melon":            { drop: "minecraft:melon",           extra: [],                          growth: false },
+  "minecraft:pumpkin":          { drop: "minecraft:pumpkin",         extra: [],                          growth: false }
+};
+
+const STACKABLE = new Set(["minecraft:cactus", "minecraft:bamboo", "minecraft:reeds"]);
+const TREE_LOGS = new Set([
+  "minecraft:oak_log","minecraft:spruce_log","minecraft:birch_log","minecraft:jungle_log",
+  "minecraft:acacia_log","minecraft:dark_oak_log","minecraft:cherry_log","minecraft:mangrove_log"
+]);
+
+function getGrowth(block) {
+  try {
+    const s = block.permutation.getAllStates();
+    return s["growth"] ?? s["growth_stage"] ?? s["age"] ?? null;
+  } catch (e) { return null; }
+}
+function isMature(block) {
+  const g = getGrowth(block);
+  if (g === null) return false;
+  return g >= 7 || (block.typeId.includes("nether_wart") && g >= 3);
+}
+function forceMature(block) {
+  try {
+    if (block.typeId.includes("nether_wart")) {
+      block.setPermutation(block.permutation.withState("age", 3));
+      return true;
+    }
+    block.setPermutation(block.permutation.withState("growth", 7));
+    return true;
+  } catch (e) { return false; }
+}
+
+function getAdjacentChest(dim, loc) {
+  try {
+    for (const d of [
+      {x:1,y:0,z:0},{x:-1,y:0,z:0},{x:0,y:0,z:1},
+      {x:0,y:0,z:-1},{x:0,y:1,z:0},{x:0,y:-1,z:0}
+    ]) {
+      const b = dim.getBlock({ x: loc.x+d.x, y: loc.y+d.y, z: loc.z+d.z });
+      if (b && (b.typeId === "minecraft:chest" || b.typeId === "minecraft:barrel")) {
+        const inv = b.getComponent("inventory");
+        if (inv?.container) return inv.container;
+      }
+    }
+  } catch (e) {}
+  return null;
+}
+function takeFromChest(c, typeId, amount = 1) {
+  try {
+    for (let i = 0; i < c.size; i++) {
+      const it = c.getItem(i);
+      if (it && it.typeId === typeId) {
+        if (it.amount > amount) { it.amount -= amount; c.setItem(i, it); }
+        else c.setItem(i, undefined);
+        return true;
+      }
+    }
+  } catch (e) {}
+  return false;
+}
+function putInChest(c, typeId, amount = 1) {
+  try {
+    let rem = amount;
+    for (let i = 0; i < c.size && rem > 0; i++) {
+      const it = c.getItem(i);
+      if (!it) {
+        const a = Math.min(rem, 64);
+        c.setItem(i, new ItemStack(typeId, a));
+        rem -= a;
+      } else if (it.typeId === typeId && it.amount < 64) {
+        const a = Math.min(64 - it.amount, rem);
+        it.amount += a;
+        c.setItem(i, it);
+        rem -= a;
+      }
+    }
+    return rem === 0;
+  } catch (e) { return false; }
+}
+
+function getTowerKey(dim, loc) { return `${loc.x},${loc.y},${loc.z},${dim.id}`; }
+function registerTower(dim, loc, type) {
+  const key = getTowerKey(dim, loc);
+  if (!activeTowers.has(key)) {
+    activeTowers.set(key, {
+      type, location: { x: loc.x, y: loc.y, z: loc.z }, dimension: dim,
+      cursor: 0, waveRing: 0, lastAction: 0
+    });
+  }
+}
+function scanNearby(player) {
+  try {
+    const dim = player.dimension;
+    const p = player.location;
+    for (let x = -12; x <= 12; x++)
+      for (let y = -3; y <= 3; y++)
+        for (let z = -12; z <= 12; z++) {
+          const loc = { x: Math.floor(p.x)+x, y: Math.floor(p.y)+y, z: Math.floor(p.z)+z };
+          const b = dim.getBlock(loc);
+          if (b && TOWER_IDS.has(b.typeId)) registerTower(dim, loc, b.typeId);
+        }
+  } catch (e) {}
+}
+
+world.afterEvents.playerSpawn.subscribe(e => { if (e.initialSpawn) scanNearby(e.player); });
+world.afterEvents.playerPlaceBlock.subscribe(e => {
+  if (TOWER_IDS.has(e.block.typeId)) registerTower(e.dimension, e.block.location, e.block.typeId);
+});
+world.afterEvents.playerBreakBlock.subscribe(e => {
+  if (TOWER_IDS.has(e.brokenBlockPermutation.type.id)) {
+    activeTowers.delete(getTowerKey(e.dimension, e.block.location));
+  }
+});
+
+system.runInterval(() => {
+  try {
+    const now = system.currentTick;
+    for (const [key, tower] of activeTowers.entries()) {
+      const { type, location, dimension } = tower;
+      const self = dimension.getBlock(location);
+      if (!self || self.typeId !== type) { activeTowers.delete(key); continue; }
+
+      const chest = getAdjacentChest(dimension, location);
+      if (!chest) continue;
+      const groundY = location.y - 1;
+
+      if (type === TOWER_TYPES.PLANTER) {
+        if (now - tower.lastAction < 4) continue;
+        const pos = SCAN_PATTERN[tower.cursor % SCAN_PATTERN.length];
+        tower.cursor = (tower.cursor + 1) % SCAN_PATTERN.length;
+        tower.lastAction = now;
+
+        const soilLoc = { x: location.x+pos.dx, y: groundY, z: location.z+pos.dz };
+        const cropLoc = { x: soilLoc.x, y: groundY+1, z: soilLoc.z };
+        const soil = dimension.getBlock(soilLoc);
+        const above = dimension.getBlock(cropLoc);
+        if (!soil || !above || above.typeId !== "minecraft:air") continue;
+
+        let seedType = null, info = null;
+        for (let i = 0; i < chest.size; i++) {
+          const it = chest.getItem(i);
+          if (it && PLANTABLE[it.typeId]) { seedType = it.typeId; info = PLANTABLE[it.typeId]; break; }
+        }
+        if (!seedType) continue;
+        if (!info.soil.some(s => soil.typeId === `minecraft:${s}`)) continue;
+
+        if (takeFromChest(chest, seedType, 1)) {
+          try {
+            above.setType(info.crop);
+            dimension.spawnParticle("minecraft:crop_growth_emitter",
+              { x: cropLoc.x+0.5, y: cropLoc.y+0.3, z: cropLoc.z+0.5 });
+          } catch (e) {}
+        }
+      }
+
+      if (type === TOWER_TYPES.FERTILIZER) {
+        if (now - tower.lastAction < 30) continue;
+        tower.lastAction = now;
+
+        const ring = getRingPositions(tower.waveRing || 0);
+        let grown = 0;
+        const maxGrow = 3;
+
+        for (const pos of ring) {
+          if (grown >= maxGrow) break;
+          const cropLoc = { x: location.x+pos.dx, y: groundY+1, z: location.z+pos.dz };
+          const crop = dimension.getBlock(cropLoc);
+          if (!crop || crop.typeId === "minecraft:air") continue;
+          if (isMature(crop)) continue;
+          const isKnown = Object.values(PLANTABLE).some(p => p.crop === crop.typeId);
+          if (!isKnown) continue;
+
+          if (takeFromChest(chest, "minecraft:bone_meal", 1)) {
+            forceMature(crop);
+            grown++;
+            try {
+              dimension.spawnParticle("minecraft:villager_happy",
+                { x: cropLoc.x+0.5, y: cropLoc.y+0.5, z: cropLoc.z+0.5 });
+            } catch (e) {}
+          } else break;
+        }
+
+        for (const pos of ring.slice(0, 6)) {
+          try {
+            dimension.spawnParticle("minecraft:crop_growth_emitter",
+              { x: location.x+pos.dx+0.5, y: groundY+1.2, z: location.z+pos.dz+0.5 });
+          } catch (e) {}
+        }
+
+        tower.waveRing = ((tower.waveRing || 0) + 1) % (AREA_RADIUS + 1);
+      }
+
+      if (type === TOWER_TYPES.HARVESTER) {
+        if (now - tower.lastAction < 4) continue;
+        const pos = SCAN_PATTERN[tower.cursor % SCAN_PATTERN.length];
+        tower.cursor = (tower.cursor + 1) % SCAN_PATTERN.length;
+        tower.lastAction = now;
+
+        const cropLoc = { x: location.x+pos.dx, y: groundY+1, z: location.z+pos.dz };
+        const above = dimension.getBlock(cropLoc);
+        if (!above || above.typeId === "minecraft:air") continue;
+        const cropId = above.typeId;
+
+        if (TREE_LOGS.has(cropId)) {
+          let y = cropLoc.y;
+          for (let i = 0; i < 12; i++) {
+            const b = dimension.getBlock({ x: cropLoc.x, y, z: cropLoc.z });
+            if (!b || !TREE_LOGS.has(b.typeId)) break;
+            putInChest(chest, b.typeId, 1);
+            b.setType("minecraft:air");
+            y++;
+          }
+          continue;
+        }
+
+        if (STACKABLE.has(cropId)) {
+          let h = 0;
+          for (let k = 0; k < 8; k++) {
+            const b = dimension.getBlock({ x: cropLoc.x, y: cropLoc.y+k, z: cropLoc.z });
+            if (b && b.typeId === cropId) h++; else break;
+          }
+          if (h >= 2) {
+            for (let k = h-1; k >= 1; k--) {
+              const b = dimension.getBlock({ x: cropLoc.x, y: cropLoc.y+k, z: cropLoc.z });
+              if (b) { putInChest(chest, cropId, 1); b.setType("minecraft:air"); }
+            }
+          }
+          continue;
+        }
+
+        const info = HARVESTABLE[cropId];
+        if (!info) continue;
+        if (info.growth && !isMature(above)) continue;
+        try {
+          above.setType("minecraft:air");
+          putInChest(chest, info.drop, 1);
+          for (const e of info.extra) putInChest(chest, e, 1);
+        } catch (e) {}
+      }
+    }
+  } catch (e) {}
+}, 1);
+
+// ═══════════════════════════════════════════════════════════
+// PAXEL — DURABILIDADE INFINITA + ENCANTAMENTOS
+// ═══════════════════════════════════════════════════════════
+
+const paxelEnchanted = new Set();
+system.runInterval(() => {
+  try {
+    for (const player of world.getAllPlayers()) {
+      const eq = player.getComponent("minecraft:equippable");
+      if (!eq) continue;
+      const main = eq.getEquipment(EquipmentSlot.Mainhand);
+      if (!main || !main.typeId.startsWith(`${NS}:paxel_`)) continue;
+
+      try {
+        const dur = main.getComponent("minecraft:durability");
+        if (dur && dur.damage > 0) {
+          dur.damage = 0;
+          eq.setEquipment(EquipmentSlot.Mainhand, main);
+        }
+      } catch (e) {}
+
+      const sig = `${player.id}:${main.typeId}`;
+      if (!paxelEnchanted.has(sig)) {
+        player.runCommandAsync("enchant @s sharpness 5");
+        player.runCommandAsync("enchant @s efficiency 5");
+        player.runCommandAsync("enchant @s unbreaking 3");
+        player.runCommandAsync("enchant @s mending 1");
+        paxelEnchanted.add(sig);
+      }
+    }
+  } catch (e) {}
+}, 20);
+
+// ═══════════════════════════════════════════════════════════
+// VEIN MINE
+// ═══════════════════════════════════════════════════════════
+
+world.afterEvents.playerBreakBlock.subscribe((e) => {
+  try {
+    const { player, brokenBlockPermutation, block, dimension } = e;
+    const eq = player.getComponent("minecraft:equippable");
+    if (!eq) return;
+    const main = eq.getEquipment(EquipmentSlot.Mainhand);
+    if (!main || !main.typeId.startsWith(`${NS}:paxel_`)) return;
+    if (!player.isSneaking) return;
+
+    const blockTypeId = brokenBlockPermutation.type.id;
+    const initialLoc = block.location;
+    const queue = [initialLoc];
+    const visited = new Set();
+    let count = 0;
+    const maxBlocks = 128;
+
+    system.run(() => {
+      try {
+        while (queue.length && count < maxBlocks) {
+          const loc = queue.shift();
+          const k = `${loc.x},${loc.y},${loc.z}`;
+          if (visited.has(k)) continue;
+          visited.add(k);
+          const target = dimension.getBlock(loc);
+          if (!target) continue;
+
+          const isStart = (loc.x === initialLoc.x && loc.y === initialLoc.y && loc.z === initialLoc.z);
+          if (isStart || target.typeId === blockTypeId) {
+            if (!isStart) {
+              try { dimension.runCommandAsync(`setblock ${loc.x} ${loc.y} ${loc.z} air destroy`); } catch (er) {}
+            }
+            count++;
+            for (const n of [
+              { x: loc.x+1, y: loc.y, z: loc.z },
+              { x: loc.x-1, y: loc.y, z: loc.z },
+              { x: loc.x, y: loc.y+1, z: loc.z },
+              { x: loc.x, y: loc.y-1, z: loc.z },
+              { x: loc.x, y: loc.y, z: loc.z+1 },
+              { x: loc.x, y: loc.y, z: loc.z-1 }
+            ]) queue.push(n);
+          }
+        }
+      } catch (er) {}
+    });
+  } catch (e) {}
+});
+
+// ═══════════════════════════════════════════════════════════
+// AÇÕES FARM DO PAXEL
+// ═══════════════════════════════════════════════════════════
+
+const STRIPPED_LOGS = {
+  "minecraft:oak_log":"minecraft:stripped_oak_log",
+  "minecraft:spruce_log":"minecraft:stripped_spruce_log",
+  "minecraft:birch_log":"minecraft:stripped_birch_log",
+  "minecraft:jungle_log":"minecraft:stripped_jungle_log",
+  "minecraft:acacia_log":"minecraft:stripped_acacia_log",
+  "minecraft:dark_oak_log":"minecraft:stripped_dark_oak_log",
+  "minecraft:mangrove_log":"minecraft:stripped_mangrove_log",
+  "minecraft:cherry_log":"minecraft:stripped_cherry_log",
+  "minecraft:crimson_stem":"minecraft:stripped_crimson_stem",
+  "minecraft:warped_stem":"minecraft:stripped_warped_stem"
+};
+const VALID_SOILS = new Set([
+  "minecraft:grass_block","minecraft:dirt","minecraft:dirt_with_roots","minecraft:coarse_dirt"
+]);
+
+world.beforeEvents.itemUseOn.subscribe(e => {
+  try {
+    const { itemStack, block } = e;
+    if (!itemStack || !itemStack.typeId.startsWith(`${NS}:paxel_`)) return;
+    if (!block) return;
+    const dim = block.dimension;
+    const typeId = block.typeId;
+
+    if (STRIPPED_LOGS[typeId]) {
+      const stripped = STRIPPED_LOGS[typeId];
+      system.run(() => {
+        try {
+          const b = dim.getBlock(block.location);
+          if (b && b.typeId === typeId) b.setType(stripped);
+        } catch (er) {}
+      });
+      return;
+    }
+
+    if (VALID_SOILS.has(typeId)) {
+      const c = block.location;
+      system.run(() => {
+        try {
+          for (let x = -1; x <= 1; x++)
+            for (let z = -1; z <= 1; z++) {
+              const loc = { x: c.x+x, y: c.y, z: c.z+z };
+              const b = dim.getBlock(loc);
+              if (b && VALID_SOILS.has(b.typeId)) {
+                const above = dim.getBlock({ x: loc.x, y: loc.y+1, z: loc.z });
+                if (above && (above.typeId === "minecraft:air" || above.typeId.includes("grass")))
+                  b.setType("minecraft:farmland");
+              }
+            }
+        } catch (er) {}
+      });
+    }
+  } catch (e) {}
+});
+
+console.warn(">>> TODOS OS MÓDULOS CARREGADOS: COMBATE + INDÚSTRIA + PAXEL + VEIN MINE <<<");
