@@ -1,0 +1,141 @@
+name: Validar Regras do Minecraft Bedrock
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch: # Permite rodar manualmente a qualquer momento pelo celular
+
+jobs:
+  validar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar o código do repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Configurar Node.js (Para validar scripts .js)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Rodar Validador Completo (JSON + JS)
+        run: |
+          cat << 'EOF' > validator.py
+          import os, json, uuid, subprocess
+
+          print("🔍 Iniciando varredura de conformidade com o Bedrock Edition...")
+          erros_encontrados = 0
+          avisos_encontrados = 0
+
+          # 1. Validar estrutura de manifests (manifest.json)
+          manifests = []
+          for root, dirs, files in os.walk("."):
+              if ".git" in root:
+                  continue
+              if "manifest.json" in files:
+                  manifests.append(os.path.join(root, "manifest.json"))
+
+          if not manifests:
+              print("❌ ERRO CRÍTICO: Nenhum 'manifest.json' encontrado! O jogo não reconhecerá como Add-On.")
+              erros_encontrados += 1
+          else:
+              print(f"📁 Encontrados {len(manifests)} arquivos manifest.json.")
+              for m_path in manifests:
+                  try:
+                      with open(m_path, "r", encoding="utf-8") as f:
+                          data = json.load(f)
+                      
+                      if "format_version" not in data:
+                          print(f"❌ Erro em {m_path}: Falta 'format_version'.")
+                          erros_encontrados += 1
+                      
+                      header = data.get("header", {})
+                      if "uuid" not in header or "version" not in header:
+                          print(f"❌ Erro em {m_path}: 'header' precisa ter 'uuid' e 'version'.")
+                          erros_encontrados += 1
+                      else:
+                          try:
+                              uuid.UUID(header["uuid"])
+                          except ValueError:
+                              print(f"❌ Erro em {m_path}: UUID '{header['uuid']}' inválido.")
+                              erros_encontrados += 1
+
+                      modules = data.get("modules", [])
+                      if not modules:
+                          print(f"⚠️ Aviso em {m_path}: Sem módulos definidos.")
+                          avisos_encontrados += 1
+                      else:
+                          for mod in modules:
+                              if "type" not in mod or "uuid" not in mod or "version" not in mod:
+                                  print(f"❌ Erro em {m_path}: Módulo incompleto.")
+                                  erros_encontrados += 1
+
+                  except json.JSONDecodeError as e:
+                      print(f"❌ ERRO DE SINTAXE JSON em {m_path}: {e}")
+                      erros_encontrados += 1
+                  except Exception as e:
+                      print(f"❌ Erro ao processar {m_path}: {e}")
+                      erros_encontrados += 1
+
+          # 2. Validar sintaxe de TODOS os arquivos JSON
+          print("\n🔍 Verificando integridade de sintaxe de todos os arquivos JSON...")
+          json_total = 0
+          json_erros = 0
+          for root, dirs, files in os.walk("."):
+              if ".git" in root:
+                  continue
+              for file in files:
+                  if file.endswith(".json"):
+                      json_total += 1
+                      f_path = os.path.join(root, file)
+                      try:
+                          with open(f_path, "r", encoding="utf-8") as jf:
+                              json.load(jf)
+                      except json.JSONDecodeError as e:
+                          print(f"❌ JSON Inválido [{f_path}]: {e}")
+                          json_erros += 1
+                          erros_encontrados += 1
+
+          print(f"📊 Total de arquivos JSON verificados: {json_total}")
+          if json_erros == 0:
+              print("✅ Todos os arquivos JSON estão com a sintaxe perfeita.")
+
+          # 3. Validar sintaxe de TODOS os arquivos JavaScript (.js)
+          print("\n🔍 Verificando sintaxe de todos os scripts JavaScript (.js)...")
+          js_total = 0
+          js_erros = 0
+          for root, dirs, files in os.walk("."):
+              if ".git" in root:
+                  continue
+              for file in files:
+                  if file.endswith(".js"):
+                      js_total += 1
+                      js_path = os.path.join(root, file)
+                      resultado = subprocess.run(["node", "--check", js_path], capture_output=True, text=True)
+                      if resultado.returncode != 0:
+                          print(f"❌ Erro de Sintaxe JS [{js_path}]:\n{resultado.stderr.strip()}")
+                          js_erros += 1
+                          erros_encontrados += 1
+
+          print(f"📊 Total de arquivos JS verificados: {js_total}")
+          if js_erros == 0 and js_total > 0:
+              print("✅ Todos os scripts JavaScript passaram na checagem de sintaxe.")
+          elif js_total == 0:
+              print("ℹ️ Nenhum arquivo .js encontrado no projeto.")
+
+          # 4. Resumo final
+          print("\n" + "="*40)
+          if erros_encontrados > 0:
+              print(f"❌ Validação falhou com {erros_encontrados} erro(s) crítico(s) e {avisos_encontrados} aviso(s).")
+              exit(1)
+          else:
+              print("🎉 Sucesso! Nenhuma violação de sintaxe ou estrutura encontrada.")
+              print("="*40)
+          EOF
+          python validator.py
