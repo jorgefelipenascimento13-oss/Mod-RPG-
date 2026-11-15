@@ -1,0 +1,82 @@
+name: Corrigir Receitas e Texturas Automaticamente
+
+on:
+  workflow_dispatch: # Isso cria um botão para você clicar e rodar
+
+jobs:
+  consertar:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Permissão para o bot salvar as alterações no seu repositório
+
+    steps:
+      - name: Baixar o código do repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar o Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Rodar script de correção
+        run: |
+          cat << 'EOF' > fix.py
+          import os, json
+
+          print("Iniciando correções...")
+
+          # 1. Corrigir Receitas (adicionar unlock)
+          recipes_dirs = ["recipes", "BP/recipes"]
+          rec_dir = next((d for d in recipes_dirs if os.path.exists(d)), None)
+          if rec_dir:
+              count = 0
+              for f in os.listdir(rec_dir):
+                  if f.endswith(".json"):
+                      p = os.path.join(rec_dir, f)
+                      with open(p, "r", encoding="utf-8") as file:
+                          data = json.load(file)
+                      unlock = [{"item": "minecraft:stick"}]
+                      mudou = False
+                      for key in ["minecraft:recipe_shaped", "minecraft:recipe_shapeless", "minecraft:recipe_furnace", "minecraft:recipe_smithing_transform"]:
+                          if key in data and "unlock" not in data[key]:
+                              data[key]["unlock"] = unlock
+                              mudou = True
+                      if mudou:
+                          with open(p, "w", encoding="utf-8") as file:
+                              json.dump(data, file, indent=2, ensure_ascii=False)
+                          count += 1
+              print(f"✅ {count} receitas corrigidas.")
+          else:
+              print("❌ Pasta de receitas não encontrada.")
+
+          # 2. Corrigir Texturas (item_texture.json)
+          items_dirs = ["RP/textures/items", "textures/items"]
+          it_dir = next((d for d in items_dirs if os.path.exists(d)), None)
+          if it_dir:
+              rp_textures = os.path.dirname(it_dir)
+              tex_path = os.path.join(rp_textures, "item_texture.json")
+              tex_data = {}
+              for f in os.listdir(it_dir):
+                  if f.endswith(".png"):
+                      key = f[:-4]
+                      tex_data[key] = {"textures": f"textures/items/{key}"}
+              json_final = {
+                  "resource_pack_name": "mod_rpg_rune",
+                  "texture_name": "atlas.items",
+                  "texture_data": tex_data
+              }
+              with open(tex_path, "w", encoding="utf-8") as file:
+                  json.dump(json_final, file, indent=2, ensure_ascii=False)
+              print(f"✅ item_texture.json refeito com {len(tex_data)} texturas.")
+          else:
+              print("❌ Pasta de texturas não encontrada.")
+          EOF
+          python fix.py
+
+      - name: Salvar alterações no repositório
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "🤖 Correção automática: unlock de receitas e texturas" || echo "Nada para commitar"
+          git push
